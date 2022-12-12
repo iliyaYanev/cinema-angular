@@ -15,7 +15,8 @@ router.post('/', isAdmin(), async (req, res) => {
         title: req.body.title,
         year: req.body.year,
         description: req.body.description,
-        img: req.body.img
+        img: req.body.img,
+        genre: req.body.genre
     };
 
     try {
@@ -39,7 +40,8 @@ router.put('/:id', preload(), isAdmin(), async (req, res) => {
         title: req.body.title,
         year: req.body.year,
         description: req.body.description,
-        img: req.body.img
+        img: req.body.img,
+        genre: req.body.genre
     };
 
     try {
