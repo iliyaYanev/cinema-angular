@@ -4,9 +4,7 @@ const { getById } = require('../services/movies');
 module.exports = () => async (req, res, next) => {
     const id = req.params.id;
     try {
-        const item = await getById(id).lean();
-        item._ownerId = item.owner;
-        res.locals.item = item;
+        res.locals.movie = await getById(id).lean();
         next();
     } catch (err) {
         console.error(err);
