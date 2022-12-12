@@ -11,9 +11,9 @@ start();
 
 async function start() {
     try {
-        await mongoose.connect('mongodb://localhost:27017/soft-cinema', {
+        await mongoose.set('strictQuery', false).connect('mongodb://localhost:27017/soft-cinema', {
             useUnifiedTopology: true,
-            useNewUrlParser: true
+            useNewUrlParser: true,
         });
         console.log('Database ready');
     } catch (err) {
