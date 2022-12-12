@@ -1,31 +1,29 @@
-const Item = require('../models/Item');
+const Movie = require('../models/Movie');
 
 
 async function getAll() {
-    return Item.find({});
+    return Movie.find({});
 }
 
-async function create(item) {
-    const result = new Item(item);
+async function create(movie) {
+    const result = new Movie(movie);
     await result.save();
 
     return result;
 }
 
 function getById(id) {
-    return Item.findById(id);
+    return Movie.findById(id);
 }
 
-async function update(id, item) {
-    const existing = await Item.findById(id);
+async function update(id, movie) {
+    const existing = await Movie.findById(id);
 
-    existing.make = item.make;
-    existing.model = item.model;
-    existing.year = item.year;
-    existing.description = item.description;
-    existing.price = item.price;
-    existing.img = item.img;
-    existing.material = item.material;
+    existing.title = movie.title;
+    existing.year = movie.year;
+    existing.description = movie.description;
+    existing.img = movie.img;
+    existing.likes = movie.likes;
 
     await existing.save();
 
@@ -33,7 +31,7 @@ async function update(id, item) {
 }
 
 async function deleteById(id) {
-    await Item.findByIdAndDelete(id);
+    await Movie.findByIdAndDelete(id);
 }
 
 
