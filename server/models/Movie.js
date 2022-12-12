@@ -10,6 +10,7 @@ const schema = new Schema({
     },
     description: { type: String, required: true, minlength: [10, 'Description must be at least 10 characters long'] },
     img: { type: String, required: true, match: [/^https?:\/\//, 'The image url should start with http:// or https://'] },
+    genre: {type: String, required: true, enum: ['Action', 'Comedy', 'Drama', 'Fantasy', 'Horror']},
     likes: [{ type: ObjectId, ref: 'User' }]
 });
 
