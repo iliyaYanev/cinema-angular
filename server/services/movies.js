@@ -23,6 +23,7 @@ async function update(id, movie) {
     existing.year = movie.year;
     existing.description = movie.description;
     existing.img = movie.img;
+    existing.genre = movie.genre;
     existing.likes = movie.likes;
 
     await existing.save();
