@@ -7,8 +7,8 @@ const User = require('../models/User');
 const JWT_SECRET = 'asoiducan93284c9rew';
 const blacklist = [];
 
-async function register(email, password) {
-    const existing = await User.findOne({ email: new RegExp(`^${email}$`, 'i') });
+async function register(email, username, password, role = 'user') {
+    const existing = await User.findOne({ email: new RegExp(`^${email}$`, 'i')});
 
     if (existing) {
         throw new Error('Email already exists');
@@ -16,7 +16,9 @@ async function register(email, password) {
 
     const user = new User({
         email,
-        hashedPassword: await bcrypt.hash(password, 10)
+        username,
+        hashedPassword: await bcrypt.hash(password, 10),
+        role
     });
 
     await user.save();
