@@ -1,3 +1,5 @@
+const Movie = require("../models/Movie");
+
 function isAuth() {
     return (req, res, next) => {
         if (req.user) {
@@ -18,9 +20,9 @@ function isGuest() {
     };
 }
 
-function isOwner() {
+function isAdmin() {
     return (req, res, next) => {
-        if (req.user && req.user._id == res.locals.item.owner) {
+        if (req.user && req.user.role === 'admin') {
             next();
         } else {
             res.status(403).json({ message: 'You cannot modify this record'});
@@ -28,8 +30,22 @@ function isOwner() {
     };
 }
 
+function hasLiked() {
+
+    return async (req, res, next) => {
+        const movie = await Movie.findById(req.user._id).lean();
+
+        if (req.user && req.user.role === 'user' && !movie.likes.toString().includes(req.user._id)) {
+            next();
+        } else {
+            res.status(403).json({message: 'You already liked this record'});
+        }
+    };
+}
+
 module.exports = {
     isAuth,
     isGuest,
-    isOwner
+    isAdmin,
+    hasLiked
 };
