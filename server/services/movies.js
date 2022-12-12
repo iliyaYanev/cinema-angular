@@ -34,11 +34,16 @@ async function deleteById(id) {
     await Movie.findByIdAndDelete(id);
 }
 
+async function like(id, userId) {
+    await Movie.updateOne({ _id: id}, {$push: { likes: userId }});
+}
+
 
 module.exports = {
     getAll,
     create,
     getById,
     update,
-    deleteById
+    deleteById,
+    like
 };
