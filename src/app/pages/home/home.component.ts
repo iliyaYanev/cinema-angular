@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MoviesService } from "../../services/movies.service";
 import { Movie } from "../../models/movie";
+import { Tv } from "../../models/tv";
 
 @Component({
   selector: 'app-home',
@@ -12,6 +13,7 @@ export class HomeComponent implements OnInit {
     popularMovies: Movie[] = [];
     upcomingMovies: Movie[] = [];
     topRatedMovies: Movie[] = [];
+    popularTvShows: Tv[] = [];
 
     constructor(private moviesService: MoviesService) {
     }
@@ -31,6 +33,10 @@ export class HomeComponent implements OnInit {
 
         this.moviesService.getMovies('top_rated').subscribe((movies) => {
             this.topRatedMovies = movies;
+        });
+
+        this.moviesService.getTvs('popular').subscribe((tvShows) => {
+            this.popularTvShows = tvShows;
         });
     }
 }

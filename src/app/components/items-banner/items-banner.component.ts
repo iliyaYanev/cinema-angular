@@ -8,6 +8,6 @@ import { Movie } from "../../models/movie";
 })
 export class ItemsBannerComponent {
 
-    @Input() movies: Movie[] = [];
-    @Input() title: String = '';
+    @Input() items: Movie[] = [];
+    @Input() title: string = '';
 }
