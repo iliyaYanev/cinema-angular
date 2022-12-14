@@ -1,11 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Movie } from "../../models/movie";
-import { IMAGE_SIZES } from "../../constants/constants";
+import {Component, Input, OnInit} from '@angular/core';
+import {Movie} from "../../models/movie";
+import {IMAGE_SIZES} from "../../constants/constants";
 
 @Component({
-  selector: 'app-item',
-  templateUrl: './item.component.html',
-  styleUrls: ['./item.component.scss']
+    selector: 'app-item',
+    templateUrl: './item.component.html',
+    styleUrls: ['./item.component.scss']
 })
 export class ItemComponent implements OnInit {
 
@@ -13,8 +13,9 @@ export class ItemComponent implements OnInit {
 
     readonly imageSizes = IMAGE_SIZES;
 
-    constructor() {}
+    constructor() {
+    }
 
-    ngOnInit() :void {
+    ngOnInit(): void {
     }
 }

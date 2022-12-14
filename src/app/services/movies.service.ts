@@ -1,12 +1,12 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
-import { BASE_URL, API_KEY } from '../constants/constants';
-import { MovieDTO } from "../models/movie";
-import { TvDto } from "../models/tv";
-import { of, switchMap } from "rxjs";
+import {Injectable} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+import {BASE_URL, API_KEY} from '../constants/constants';
+import {MovieDTO} from "../models/movie";
+import {TvDto} from "../models/tv";
+import {of, switchMap} from "rxjs";
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class MoviesService {
 

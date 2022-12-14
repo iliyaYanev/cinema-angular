@@ -1,7 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Movie } from "../../models/movie";
-import { state, trigger, style, transition, animate } from "@angular/animations";
-import { IMAGE_SIZES } from "../../constants/constants";
+import {Component, Input, OnInit} from '@angular/core';
+import {Movie} from "../../models/movie";
+import {state, trigger, style, transition, animate} from "@angular/animations";
+import {IMAGE_SIZES} from "../../constants/constants";
 
 @Component({
     selector: 'app-slider',
@@ -9,7 +9,7 @@ import { IMAGE_SIZES } from "../../constants/constants";
     styleUrls: ['./slider.component.scss'],
     animations: [
         trigger('fade', [
-            state('void', style({ opacity: 0})),
+            state('void', style({opacity: 0})),
             transition('void <=> *', [animate('1s')])
         ])
     ]
