@@ -21,7 +21,6 @@ export class MoviesService {
     }
 
     getMovie(id: string) {
-        console.log(id);
         return this.http.get<Movie>(`${BASE_URL}/3/movie/${id}?api_key=${API_KEY}`);
     }
 
