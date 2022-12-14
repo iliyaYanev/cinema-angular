@@ -3,6 +3,8 @@ import { MoviesService } from "../../services/movies.service";
 import { Movie } from "../../models/movie";
 import { animate, state, style, transition, trigger } from "@angular/animations";
 import { Scroller } from "primeng/scroller";
+import { ActivatedRoute } from "@angular/router";
+import { take } from "rxjs";
 
 @Component({
     selector: 'app-movies',
@@ -18,12 +20,21 @@ import { Scroller } from "primeng/scroller";
 export class MoviesComponent implements OnInit {
 
     movies: Movie[] = [];
+    genreId: string | null = null;
 
-    constructor(private moviesService: MoviesService) {
+    constructor(private moviesService: MoviesService, private route: ActivatedRoute) {
     }
 
     ngOnInit(): void {
-        this.getPagedMovies(1);
+        this.route.params.pipe(take(1))
+            .subscribe(({genreId}) => {
+               if (genreId) {
+                   this.genreId = genreId;
+                   this.getMoviesByGenre(genreId, 1);
+               } else {
+                   this.getPagedMovies(1);
+               }
+            });
     }
 
     getPagedMovies(pageNumber: number) {
@@ -33,7 +44,21 @@ export class MoviesComponent implements OnInit {
             });
     }
 
+    getMoviesByGenre(genreId: string, page: number) {
+        this.moviesService.getMoviesByGenre(genreId, page)
+            .subscribe(movies => {
+                this.movies = movies;
+            });
+    }
+
     paginate(event: Scroller) {
-        this.getPagedMovies(event.page + 1);
+        const pageNumber = event.page + 1;
+
+        if (this.genreId) {
+            this.getMoviesByGenre(this.genreId, pageNumber);
+        }
+        else {
+            this.getPagedMovies(pageNumber);
+        }
     }
 }
