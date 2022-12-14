@@ -21,6 +21,7 @@ export class MoviesComponent implements OnInit {
 
     movies: Movie[] = [];
     genreId: string | null = null;
+    searchString: string | null = null;
 
     constructor(private moviesService: MoviesService, private route: ActivatedRoute) {
     }
@@ -37,8 +38,8 @@ export class MoviesComponent implements OnInit {
             });
     }
 
-    getPagedMovies(pageNumber: number) {
-        this.moviesService.searchMovies(pageNumber)
+    getPagedMovies(pageNumber: number, searchString?: string) {
+        this.moviesService.searchMovies(pageNumber, searchString)
             .subscribe(movies => {
                 this.movies = movies;
             });
@@ -58,7 +59,18 @@ export class MoviesComponent implements OnInit {
             this.getMoviesByGenre(this.genreId, pageNumber);
         }
         else {
-            this.getPagedMovies(pageNumber);
+            if (this.searchString) {
+                this.getPagedMovies(pageNumber, this.searchString);
+            }
+            else {
+                this.getPagedMovies(pageNumber);
+            }
+        }
+    }
+
+    changed() {
+        if (this.searchString) {
+            this.getPagedMovies(1, this.searchString);
         }
     }
 }
