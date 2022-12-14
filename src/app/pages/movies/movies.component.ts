@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {MoviesService} from "../../services/movies.service";
-import {Movie} from "../../models/movie";
-import {animate, state, style, transition, trigger} from "@angular/animations";
-import {Scroller} from "primeng/scroller";
+import { Component, OnInit } from '@angular/core';
+import { MoviesService } from "../../services/movies.service";
+import { Movie } from "../../models/movie";
+import { animate, state, style, transition, trigger } from "@angular/animations";
+import { Scroller } from "primeng/scroller";
 
 @Component({
     selector: 'app-movies',

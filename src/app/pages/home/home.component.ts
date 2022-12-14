@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {MoviesService} from "../../services/movies.service";
-import {Movie} from "../../models/movie";
-import {Tv} from "../../models/tv";
+import { Component, OnInit } from '@angular/core';
+import { MoviesService } from "../../services/movies.service";
+import { Movie } from "../../models/movie";
+import { Tv } from "../../models/tv";
 
 @Component({
     selector: 'app-home',
