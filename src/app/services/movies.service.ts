@@ -4,6 +4,7 @@ import { API_KEY, BASE_URL } from '../constants/constants';
 import { Movie, MovieCredits, MovieDTO, MovieImages, MovieVideoDTO } from "../models/movie";
 import { TvDto } from "../models/tv";
 import { of, switchMap } from "rxjs";
+import { GenresDTO } from "../models/genre";
 
 @Injectable({
     providedIn: 'root'
@@ -28,6 +29,20 @@ export class MoviesService {
         return this.http.get<MovieVideoDTO>(`${BASE_URL}/3/movie/${id}/videos?api_key=${API_KEY}`)
             .pipe(switchMap((movies) => {
                 return of(movies.results.slice(0, 3));
+            }));
+    }
+
+    getMoviesGenres() {
+        return this.http.get<GenresDTO>(`${BASE_URL}/3/genre/movie/list?api_key=${API_KEY}`)
+            .pipe(switchMap((res) => {
+                return of(res.genres);
+            }));
+    }
+
+    getMoviesByGenre(genreId: string, page: number) {
+        return this.http.get<MovieDTO>(`${BASE_URL}/3/discover/movie?with_genres=${genreId}&api_key=${API_KEY}&page=${page}`)
+            .pipe(switchMap((movies) => {
+                return of(movies.results);
             }));
     }
 
