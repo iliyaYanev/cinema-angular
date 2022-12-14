@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { BASE_URL, API_KEY } from './constants';
+import { BASE_URL, API_KEY } from '../constants/constants';
 import { MovieDTO } from "../models/movie";
 
 @Injectable({

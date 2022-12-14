@@ -1,7 +1,7 @@
 import { Component, Input, OnInit} from '@angular/core';
 import { Movie } from "../../models/movie";
 import { state, trigger, style, transition, animate } from "@angular/animations";
-import { IMAGE_SIZES } from "../../services/constants";
+import { IMAGE_SIZES } from "../../constants/constants";
 
 @Component({
     selector: 'app-slider',

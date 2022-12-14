@@ -1,6 +1,6 @@
 import {Component, Input, OnInit } from '@angular/core';
 import { Movie } from "../../models/movie";
-import { IMAGE_SIZES } from "../../services/constants";
+import { IMAGE_SIZES } from "../../constants/constants";
 
 @Component({
   selector: 'app-item',
