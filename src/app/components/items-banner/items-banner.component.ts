@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Movie } from "../../models/movie";
-import {TvShow} from "../../models/tvShow";
+import { TvShow } from "../../models/tvShow";
 
 @Component({
   selector: 'app-items-banner',
