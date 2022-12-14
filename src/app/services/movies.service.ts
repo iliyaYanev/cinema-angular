@@ -1,7 +1,7 @@
 import { Injectable} from '@angular/core';
-import { HttpClient} from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { API_KEY, BASE_URL } from '../constants/constants';
-import { Movie, MovieDTO } from "../models/movie";
+import { Movie, MovieDTO, MovieVideoDTO } from "../models/movie";
 import { TvDto } from "../models/tv";
 import { of, switchMap } from "rxjs";
 
@@ -22,6 +22,13 @@ export class MoviesService {
 
     getMovie(id: string) {
         return this.http.get<Movie>(`${BASE_URL}/3/movie/${id}?api_key=${API_KEY}`);
+    }
+
+    getMovieVideos(id: string) {
+        return this.http.get<MovieVideoDTO>(`${BASE_URL}/3/movie/${id}/videos?api_key=${API_KEY}`)
+            .pipe(switchMap((movies) => {
+                return of(movies.results.slice(0, 3));
+            }));
     }
 
     searchMovies(page: number) {
