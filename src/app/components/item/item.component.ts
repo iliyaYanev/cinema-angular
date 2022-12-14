@@ -1,4 +1,4 @@
-import {Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Movie } from "../../models/movie";
 import { IMAGE_SIZES } from "../../constants/constants";
 
