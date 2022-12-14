@@ -20,6 +20,13 @@ export class MoviesService {
             }));
     }
 
+    searchMovies(page: number) {
+        return this.http.get<MovieDTO>(`${BASE_URL}/3/movie/popular?page=${page}&api_key=${API_KEY}`)
+            .pipe(switchMap((movies) => {
+                return of(movies.results);
+            }));
+    }
+
     getTvs(type: string = 'popular', count: number = 6) {
         return this.http.get<TvDto>(`${BASE_URL}/tv/${type}?api_key=${API_KEY}`).pipe(
             switchMap((res) => {
