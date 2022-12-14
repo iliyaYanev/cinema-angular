@@ -11,10 +11,10 @@ export class MoviesService {
 
     constructor(private http: HttpClient) { }
 
-    getMovies(type: string = 'upcoming') {
+    getMovies(type: string = 'upcoming', count: number = 6) {
         return this.http.get<MovieDTO>(`${BASE_URL}/3/movie/${type}?api_key=${API_KEY}`)
-            .pipe(switchMap((res) => {
-                return of(res.results);
+            .pipe(switchMap((movies) => {
+                return of(movies.results.slice(0, count));
             }));
   }
 }
