@@ -54,8 +54,10 @@ export class MoviesService {
         return this.http.get<MovieCredits>(`${BASE_URL}/3/movie/${id}/credits?api_key=${API_KEY}`);
     }
 
-    searchMovies(page: number) {
-        return this.http.get<MovieDTO>(`${BASE_URL}/3/movie/popular?page=${page}&api_key=${API_KEY}`)
+    searchMovies(page: number, searchString?: string) {
+        const uri = searchString ? 'search/movie' : 'movie/popular';
+
+        return this.http.get<MovieDTO>(`${BASE_URL}/3/${uri}?page=${page}&query=${searchString}&api_key=${API_KEY}`)
             .pipe(switchMap((movies) => {
                 return of(movies.results);
             }));
