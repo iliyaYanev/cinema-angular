@@ -1,8 +1,8 @@
-export interface GenresDTO {
-    genres: Genre[];
+export interface GenresDto {
+  genres: Genre[];
 }
 
 export interface Genre {
-    name: string;
-    id: string;
+  name: string;
+  id: string;
 }

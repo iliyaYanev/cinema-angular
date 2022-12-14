@@ -1,73 +1,92 @@
-import { Injectable} from '@angular/core';
-import { HttpClient } from "@angular/common/http";
-import { API_KEY, BASE_URL } from '../constants/constants';
-import { Movie, MovieCredits, MovieDTO, MovieImages, MovieVideoDTO } from "../models/movie";
-import { TvDto } from "../models/tv";
-import { of, switchMap } from "rxjs";
-import { GenresDTO } from "../models/genre";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Movie, MovieCredits, MovieDto, MovieImages, MovieVideoDto } from '../models/movie';
+import { TvShowDto } from '../models/tv';
+import { switchMap } from 'rxjs/operators';
+import { of } from 'rxjs';
+import { GenresDto } from '../models/genre';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 export class MoviesService {
+  baseUrl: string = 'https://api.themoviedb.org/3';
+  apiKey: string = '8c247ea0b4b56ed2ff7d41c9a833aa77';
 
-    constructor(private http: HttpClient) {
-    }
+  constructor(private http: HttpClient) {}
 
-    getMovies(type: string = 'upcoming', count: number = 6) {
-        return this.http.get<MovieDTO>(`${BASE_URL}/3/movie/${type}?api_key=${API_KEY}`)
-            .pipe(switchMap((movies) => {
-                return of(movies.results.slice(0, count));
-            }));
-    }
+  getMovies(type: string = 'upcoming', count: number = 12) {
+    return this.http.get<MovieDto>(`${this.baseUrl}/movie/${type}?api_key=${this.apiKey}`).pipe(
+      switchMap((res) => {
+        return of(res.results.slice(0, count));
+      })
+    );
+  }
 
-    getMovie(id: string) {
-        return this.http.get<Movie>(`${BASE_URL}/3/movie/${id}?api_key=${API_KEY}`);
-    }
+  getMovie(id: string) {
+    return this.http.get<Movie>(`${this.baseUrl}/movie/${id}?api_key=${this.apiKey}`);
+  }
 
-    getMovieVideos(id: string) {
-        return this.http.get<MovieVideoDTO>(`${BASE_URL}/3/movie/${id}/videos?api_key=${API_KEY}`)
-            .pipe(switchMap((movies) => {
-                return of(movies.results.slice(0, 3));
-            }));
-    }
+  getMovieVideos(id: string) {
+    return this.http
+      .get<MovieVideoDto>(`${this.baseUrl}/movie/${id}/videos?api_key=${this.apiKey}`)
+      .pipe(
+        switchMap((res) => {
+          return of(res.results);
+        })
+      );
+  }
 
-    getMoviesGenres() {
-        return this.http.get<GenresDTO>(`${BASE_URL}/3/genre/movie/list?api_key=${API_KEY}`)
-            .pipe(switchMap((res) => {
-                return of(res.genres);
-            }));
-    }
+  getMoviesGenres() {
+    return this.http.get<GenresDto>(`${this.baseUrl}/genre/movie/list?api_key=${this.apiKey}`).pipe(
+      switchMap((res) => {
+        return of(res.genres);
+      })
+    );
+  }
 
-    getMoviesByGenre(genreId: string, page: number) {
-        return this.http.get<MovieDTO>(`${BASE_URL}/3/discover/movie?with_genres=${genreId}&api_key=${API_KEY}&page=${page}`)
-            .pipe(switchMap((movies) => {
-                return of(movies.results);
-            }));
-    }
+  getMoviesByGenre(genreId: string, pageNumber: number) {
+    return this.http
+      .get<MovieDto>(
+        `${this.baseUrl}/discover/movie?with_genres=${genreId}&page=${pageNumber}&api_key=${this.apiKey}`
+      )
+      .pipe(
+        switchMap((res) => {
+          return of(res.results);
+        })
+      );
+  }
 
-    getMovieImages(id: string) {
-        return this.http.get<MovieImages>(`${BASE_URL}/3/movie/${id}/images?api_key=${API_KEY}`);
-    }
+  getMovieImages(id: string) {
+    return this.http.get<MovieImages>(`${this.baseUrl}/movie/${id}/images?api_key=${this.apiKey}`);
+  }
 
-    getMovieCredits(id: string) {
-        return this.http.get<MovieCredits>(`${BASE_URL}/3/movie/${id}/credits?api_key=${API_KEY}`);
-    }
+  getMovieCredits(id: string) {
+    return this.http.get<MovieCredits>(
+      `${this.baseUrl}/movie/${id}/credits?api_key=${this.apiKey}`
+    );
+  }
 
-    searchMovies(page: number, searchString?: string) {
-        const uri = searchString ? 'search/movie' : 'movie/popular';
+  getMovieSimilar(id: string) {
+    return this.http
+      .get<MovieDto>(`${this.baseUrl}/movie/${id}/similar?api_key=${this.apiKey}`)
+      .pipe(
+        switchMap((res) => {
+          return of(res.results.slice(0, 12));
+        })
+      );
+  }
 
-        return this.http.get<MovieDTO>(`${BASE_URL}/3/${uri}?page=${page}&query=${searchString}&api_key=${API_KEY}`)
-            .pipe(switchMap((movies) => {
-                return of(movies.results);
-            }));
-    }
-
-    getTvs(type: string = 'popular', count: number = 6) {
-        return this.http.get<TvDto>(`${BASE_URL}/3/tv/popular?api_key=${API_KEY}`).pipe(
-            switchMap((res) => {
-                return of(res.results.slice(0, count));
-            })
-        );
-    }
+  searchMovies(page: number, searchValue?: string) {
+    const uri = searchValue ? '/search/movie' : '/movie/popular';
+    return this.http
+      .get<MovieDto>(
+        `${this.baseUrl}${uri}?page=${page}&query=${searchValue}&api_key=${this.apiKey}`
+      )
+      .pipe(
+        switchMap((res) => {
+          return of(res.results);
+        })
+      );
+  }
 }

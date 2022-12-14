@@ -1,76 +1,61 @@
 import { Component, OnInit } from '@angular/core';
-import { MoviesService } from "../../services/movies.service";
-import { Movie } from "../../models/movie";
-import { animate, state, style, transition, trigger } from "@angular/animations";
-import { Scroller } from "primeng/scroller";
-import { ActivatedRoute } from "@angular/router";
-import { take } from "rxjs";
+import { ActivatedRoute } from '@angular/router';
+import { take } from 'rxjs/operators';
+import { Movie } from 'src/app/models/movie';
+import { MoviesService } from 'src/app/services/movies.service';
 
 @Component({
-    selector: 'app-movies',
-    templateUrl: './movies.component.html',
-    styleUrls: ['./movies.component.scss'],
-    animations: [
-        trigger('fade', [
-            state('void', style({opacity: 0})),
-            transition('void <=> *', [animate('1s')])
-        ])
-    ]
+  selector: 'app-movies',
+  templateUrl: './movies.component.html',
+  styleUrls: ['./movies.component.scss']
 })
 export class MoviesComponent implements OnInit {
+  movies: Movie[] = [];
+  genreId: string | null = null;
+  searchValue: string | null = null;
 
-    movies: Movie[] = [];
-    genreId: string | null = null;
-    searchString: string | null = null;
+  constructor(private moviesService: MoviesService, private route: ActivatedRoute) {}
 
-    constructor(private moviesService: MoviesService, private route: ActivatedRoute) {
+  ngOnInit(): void {
+    this.route.params.pipe(take(1)).subscribe(({ genreId }) => {
+      if (genreId) {
+        this.genreId = genreId;
+        this.getMoviesByGenre(genreId, 1);
+      } else {
+        this.getPagedMovies(1);
+      }
+    });
+  }
+
+  getPagedMovies(page: number, searchKeyword?: string) {
+    this.moviesService.searchMovies(page, searchKeyword).subscribe((movies) => {
+      this.movies = movies;
+    });
+  }
+
+  getMoviesByGenre(genreId: string, page: number) {
+    this.moviesService.getMoviesByGenre(genreId, page).subscribe((movies) => {
+      this.movies = movies;
+    });
+  }
+
+  paginate(event: any) {
+    const pageNumber = event.page + 1;
+
+    if (this.genreId) {
+      this.getMoviesByGenre(this.genreId, pageNumber);
+    } else {
+      if (this.searchValue) {
+        this.getPagedMovies(pageNumber, this.searchValue);
+      } else {
+        this.getPagedMovies(pageNumber);
+      }
     }
+  }
 
-    ngOnInit(): void {
-        this.route.params.pipe(take(1))
-            .subscribe(({genreId}) => {
-               if (genreId) {
-                   this.genreId = genreId;
-                   this.getMoviesByGenre(genreId, 1);
-               } else {
-                   this.getPagedMovies(1);
-               }
-            });
+  searchChanged() {
+    if (this.searchValue) {
+      this.getPagedMovies(1, this.searchValue);
     }
-
-    getPagedMovies(pageNumber: number, searchString?: string) {
-        this.moviesService.searchMovies(pageNumber, searchString)
-            .subscribe(movies => {
-                this.movies = movies;
-            });
-    }
-
-    getMoviesByGenre(genreId: string, page: number) {
-        this.moviesService.getMoviesByGenre(genreId, page)
-            .subscribe(movies => {
-                this.movies = movies;
-            });
-    }
-
-    paginate(event: Scroller) {
-        const pageNumber = event.page + 1;
-
-        if (this.genreId) {
-            this.getMoviesByGenre(this.genreId, pageNumber);
-        }
-        else {
-            if (this.searchString) {
-                this.getPagedMovies(pageNumber, this.searchString);
-            }
-            else {
-                this.getPagedMovies(pageNumber);
-            }
-        }
-    }
-
-    changed() {
-        if (this.searchString) {
-            this.getPagedMovies(1, this.searchString);
-        }
-    }
+  }
 }
