@@ -12,7 +12,7 @@ export class AuthGuard implements CanActivate {
 
   canActivate(): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     if (this.jwtService.isTokenExpired()) {
-        this.router.navigate(['/']);
+        this.router.navigate(['../']);
         return false;
     } else {
         return true;

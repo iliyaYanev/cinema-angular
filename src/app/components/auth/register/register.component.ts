@@ -33,7 +33,7 @@ export class RegisterComponent {
       return;
     }
     this.authService.register()
-        .pipe(tap(() => this.router.navigate(['/auth/login'])))
+        .pipe(tap(() => this.router.navigate(['../auth/login'])))
         .subscribe();
   }
 

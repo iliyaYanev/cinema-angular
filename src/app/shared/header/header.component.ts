@@ -14,7 +14,7 @@ export class HeaderComponent {
 
   logout(): void {
     this.authService.logout();
-    this.router.navigate(['/']);
+    this.router.navigate(['../']);
   }
 
   isLoggedIn(): Observable<boolean> {
