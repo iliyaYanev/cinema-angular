@@ -73,12 +73,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "soft-cinema:build:production",
-              "proxyConfig": "src/proxy.conf.json"
+              "browserTarget": "soft-cinema:build:production"
             },
             "development": {
-              "browserTarget": "soft-cinema:build:development",
-              "proxyConfig": "src/proxy.conf.json"
+              "browserTarget": "soft-cinema:build:development"
             }
           },
           "defaultConfiguration": "development"
