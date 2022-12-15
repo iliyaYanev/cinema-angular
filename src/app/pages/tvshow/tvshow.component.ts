@@ -1,13 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Item } from 'src/app/components/item/item';
-import {
-  mapTvShowToItem,
-  TvShow,
-  TvShowCredits,
-  TvShowImages,
-  TvShowVideo
-} from 'src/app/models/tv';
+import { mapTvShowToItem, TvShow, TvShowCredits, TvShowImages, TvShowVideo } from 'src/app/models/tv';
 import { TvShowsService } from 'src/app/services/tvshows.service';
 import { IMAGES_SIZES } from '../../constants/images-sizes';
 
