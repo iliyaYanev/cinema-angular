@@ -4,11 +4,18 @@ import { take } from 'rxjs/operators';
 import { MoviesService } from 'src/app/services/movies.service';
 import { Item } from "../../models/item";
 import { mapMovieToItem } from "../../models/movie";
+import {animate, state, style, transition, trigger} from "@angular/animations";
 
 @Component({
   selector: 'app-movies',
   templateUrl: './movies.component.html',
-  styleUrls: ['./movies.component.scss']
+  styleUrls: ['./movies.component.scss'],
+  animations: [
+    trigger('slideFade', [
+      state('void', style({ opacity: 0 })),
+      transition('void <=> *', [animate('1s')])
+    ])
+  ]
 })
 export class MoviesComponent implements OnInit {
   movies: Item[] = [];
