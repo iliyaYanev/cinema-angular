@@ -22,9 +22,10 @@ export class AuthService {
             duration: 1500, horizontalPosition: 'right', verticalPosition: 'top' })));
       }
 
-    register(registerRequest?: RegisterRequest): Observable<RegisterResponse> {
+    register(registerRequest: RegisterRequest): Observable<RegisterResponse> {
+        console.log(registerRequest);
          return this.http.post<RegisterResponse>(REGISTER_PATH, registerRequest).pipe(
-            tap((res: LoginResponse) => localStorage.setItem(LOCALSTORAGE_TOKEN_KEY, res.accessToken)),
+            tap((res: RegisterResponse) => localStorage.setItem(LOCALSTORAGE_TOKEN_KEY, res.accessToken)),
             tap(() => this.loggedIn.next(true)),
             tap(() => this.snackbar.open(`User created successfully`, 'Close', {
             duration: 1500, horizontalPosition: 'right', verticalPosition: 'top' })));
