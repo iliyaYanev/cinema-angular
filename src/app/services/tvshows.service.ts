@@ -14,14 +14,6 @@ export class TvShowsService {
 
   constructor(private http: HttpClient) {}
 
-  getTvShows(type: string = 'upcoming', count: number = 12) {
-    return this.http.get<TvShowDto>(`${this.baseUrl}/tv/${type}?api_key=${this.apiKey}`).pipe(
-      switchMap((res) => {
-        return of(res.results.slice(0, count));
-      })
-    );
-  }
-
   getTvShow(id: string) {
     return this.http.get<TvShow>(`${this.baseUrl}/tv/${id}?api_key=${this.apiKey}`);
   }
@@ -62,14 +54,6 @@ export class TvShowsService {
 
   getTvShowCredits(id: string) {
     return this.http.get<TvShowCredits>(`${this.baseUrl}/tv/${id}/credits?api_key=${this.apiKey}`);
-  }
-
-  getTvShowSimilar(id: string) {
-    return this.http.get<TvShowDto>(`${this.baseUrl}/tv/${id}/similar?api_key=${this.apiKey}`).pipe(
-      switchMap((res) => {
-        return of(res.results.slice(0, 12));
-      })
-    );
   }
 
   searchTvShows(page: number, searchValue?: string) {
