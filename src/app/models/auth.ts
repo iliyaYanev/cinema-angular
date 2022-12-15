@@ -1,15 +1,7 @@
-export interface RefreshToken {
-    id: number;
-    userId: number;
-    token: string;
-    refreshCount: number;
-    expiryDate: Date;
-}
-
 export interface LoginResponse {
     accessToken: string;
-    refreshToken: RefreshToken;
-    tokenType: string;
+    _id: string;
+    email: string;
 }
 
 export interface LoginRequest {
@@ -23,9 +15,11 @@ export interface RegisterRequest {
     firstname: string;
     lastname: string;
     password: string;
+    passwordConfirm: string;
 }
 
 export interface RegisterResponse {
-    status: number;
-    message: string;
+    accessToken: string;
+    _id: string;
+    email: string;
 }
