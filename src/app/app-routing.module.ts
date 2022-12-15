@@ -8,7 +8,7 @@ import { TvShowsComponent } from './pages/tv-shows/tv-shows.component';
 import { TvShowComponent } from './pages/tv-show/tvshow.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from "./components/auth/register/register.component";
-import { AuthGuard } from "./services/auth-guard/auth-guard";
+import { AuthGuard } from "./guards/auth-guard/auth-guard";
 
 const routes: Routes = [
   {
