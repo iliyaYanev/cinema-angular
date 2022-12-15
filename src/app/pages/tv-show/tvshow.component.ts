@@ -29,10 +29,6 @@ export class TvShowComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy() {
-    console.log('component destroyed');
-  }
-
   getTvShow(id: string) {
     this.tvShowsService.getTvShow(id).subscribe((tvShowData) => {
       this.tvShowBanner = mapTvShowToItem(tvShowData);
