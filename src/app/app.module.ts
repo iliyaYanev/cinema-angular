@@ -29,7 +29,7 @@ import { MatInputModule } from "@angular/material/input";
 import { MatButtonModule } from "@angular/material/button";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { JwtModule } from "@auth0/angular-jwt";
-import { tokenGetter } from "./constants/login-mock";
+import { tokenGetter } from "./constants/auth-constants";
 import { RegisterComponent } from './components/auth/register/register.component';
 
 @NgModule({
