@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { take } from 'rxjs/operators';
-import { TvShow } from 'src/app/models/tv';
 import { TvShowsService } from '../../services/tvshows.service';
+import { Item } from "../../models/item";
+import { mapTvShowToItem } from "../../models/tv";
 
 @Component({
   selector: 'app-tv-shows',
@@ -10,7 +11,7 @@ import { TvShowsService } from '../../services/tvshows.service';
   styleUrls: ['./tv-shows.component.scss']
 })
 export class TvShowsComponent implements OnInit {
-  tvShows: TvShow[] = [];
+  items: Item[] = [];
   genreId: string | null = null;
   searchValue: string | null = null;
 
@@ -29,13 +30,13 @@ export class TvShowsComponent implements OnInit {
 
   getPagedTvShows(page: number, searchKeyword?: string) {
     this.tvShowsService.searchTvShows(page, searchKeyword).subscribe((tvShows) => {
-      this.tvShows = tvShows;
+      this.items = tvShows.map((tvShows) => mapTvShowToItem(tvShows));
     });
   }
 
   getTvShowsByGenre(genreId: string, page: number) {
     this.tvShowsService.getTvShowsByGenre(genreId, page).subscribe((tvShows) => {
-      this.tvShows = tvShows;
+      this.items = tvShows.map((tvShows) => mapTvShowToItem(tvShows));
     });
   }
 
