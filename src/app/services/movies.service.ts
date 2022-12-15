@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Movie, MovieCredits, MovieDto, MovieImages, MovieVideoDto } from '../models/movie';
-import { TvShowDto } from '../models/tv';
 import { switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { GenresDto } from '../models/genre';
