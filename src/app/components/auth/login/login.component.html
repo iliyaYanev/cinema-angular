@@ -1,5 +1,4 @@
 <div>
-    <a [routerLink]="['../register']">Go to Register</a>
     <mat-card>
         <mat-card-title>Login</mat-card-title>
         <mat-card-content>
@@ -26,6 +25,7 @@
                     <!-- Button is disabled(not clickable), if our LoginForm contains Validation Errors -->
                     <button type="submit" mat-button [disabled]="!loginForm.valid">Login</button>
                 </div>
+                <a [routerLink]="['../register']">Click here to register.</a>
 
             </form>
         </mat-card-content>
