@@ -1,4 +1,4 @@
-import { Item } from '../components/item/item';
+import { Item } from './item';
 import { Genre } from './genre';
 
 export interface TvShow {

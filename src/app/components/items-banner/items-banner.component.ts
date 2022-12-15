@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Item } from '../item/item';
+import { Item } from '../../models/item';
 
 @Component({
   selector: 'items-banner',

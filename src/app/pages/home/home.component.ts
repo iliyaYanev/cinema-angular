@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Item } from 'src/app/components/item/item';
+import { Item } from 'src/app/models/item';
 import { TvShowsService } from 'src/app/services/tvshows.service';
 import { mapMovieToItem } from '../../models/movie';
 import { mapTvShowToItem } from '../../models/tv';

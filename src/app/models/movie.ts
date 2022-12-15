@@ -1,4 +1,4 @@
-import { Item } from '../components/item/item';
+import { Item } from './item';
 
 export interface Movie {
   adult: boolean;

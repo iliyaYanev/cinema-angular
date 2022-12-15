@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IMAGES_SIZES } from '../../constants/images-sizes';
-import { Item } from './item';
+import { Item } from '../../models/item';
 @Component({
   selector: 'item',
   templateUrl: './item.component.html',
