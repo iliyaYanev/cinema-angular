@@ -7,7 +7,7 @@
 }
 
 input {
-  padding: 10px;
+  margin: 0 auto;
 }
 
 a {
@@ -15,39 +15,32 @@ a {
   font-size: 15px;
 }
 
-mat-error {
-  font-size: 12px;
-  color: red;
-}
-
-mat-form-field {
-  padding-right: 5px;
-}
-
 mat-card {
   max-width: 600px;
-  color: $primaryColor;
 
-  &-title, &-content {
+  mat-card-title,
+  mat-card-content {
     display: flex;
-    font-size: 20px;
     justify-content: center;
-    padding-bottom: 20px;
+    color: $primaryColor;;
+    font-size: 25px;
+    margin: 5px;
 
     form {
       .mat-form-field {
         width: 100%;
         min-width: 300px;
-        padding-right: 10px;
       }
 
       .error {
         padding: 16px;
         width: 300px;
-        color: red;
+        color: white;
+        background-color: red;
       }
 
       .button {
+        color: $white;
         display: flex;
         justify-content: flex-end;
       }
