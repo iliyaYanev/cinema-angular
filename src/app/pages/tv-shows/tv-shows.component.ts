@@ -4,11 +4,18 @@ import { take } from 'rxjs/operators';
 import { TvShowsService } from '../../services/tvshows.service';
 import { Item } from "../../models/item";
 import { mapTvShowToItem } from "../../models/tv";
+import {animate, state, style, transition, trigger} from "@angular/animations";
 
 @Component({
   selector: 'app-tv-shows',
   templateUrl: './tv-shows.component.html',
-  styleUrls: ['./tv-shows.component.scss']
+  styleUrls: ['./tv-shows.component.scss'],
+  animations: [
+    trigger('slideFade', [
+      state('void', style({ opacity: 0 })),
+      transition('void <=> *', [animate('1s')])
+    ])
+  ]
 })
 export class TvShowsComponent implements OnInit {
   items: Item[] = [];
