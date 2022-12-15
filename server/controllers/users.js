@@ -8,6 +8,8 @@ router.post('/register', async (req, res) => {
     try {
         const { username, email, firstName, lastName, password, passwordConfirm } = req.body;
 
+        console.log(username, email, firstName, lastName, password, passwordConfirm);
+
         if (!email || !username || !firstName ||
             !lastName || !password || !passwordConfirm) {
             throw new Error('All fields are required!');
