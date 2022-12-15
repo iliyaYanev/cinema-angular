@@ -25,16 +25,16 @@
                 </mat-form-field>
 
                 <mat-form-field>
-                    <input type="text" matInput placeholder="First Name" formControlName="firstname">
+                    <input type="text" matInput placeholder="First Name" formControlName="firstName">
                     <mat-error
-                            *ngIf="this.registerForm.get('firstname')?.touched && this.registerForm.get('firstname')?.hasError('required')">
+                            *ngIf="this.registerForm.get('firstName')?.touched && this.registerForm.get('firstName')?.hasError('required')">
                         First Name is required</mat-error>
                 </mat-form-field>
 
                 <mat-form-field>
-                    <input type="text" matInput placeholder="Last Name" formControlName="lastname">
+                    <input type="text" matInput placeholder="Last Name" formControlName="lastName">
                     <mat-error
-                            *ngIf="this.registerForm.get('lastname')?.touched && this.registerForm.get('lastname')?.hasError('required')">
+                            *ngIf="this.registerForm.get('lastName')?.touched && this.registerForm.get('lastName')?.hasError('required')">
                         Last Name is required</mat-error>
                 </mat-form-field>
 
