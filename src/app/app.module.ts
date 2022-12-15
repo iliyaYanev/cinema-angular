@@ -23,6 +23,14 @@ import { InputTextModule } from 'primeng/inputtext';
 import { TvShowsComponent } from './pages/tv-shows/tv-shows.component';
 import { TvShowComponent } from './pages/tv-show/tvshow.component';
 import { LoginComponent } from './components/auth/login/login.component';
+import { MatCardModule } from "@angular/material/card";
+import { ReactiveFormsModule } from "@angular/forms";
+import { MatInputModule } from "@angular/material/input";
+import { MatButtonModule } from "@angular/material/button";
+import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { JwtModule } from "@auth0/angular-jwt";
+import { tokenGetter } from "./constants/login-mock";
+import { RegisterComponent } from './components/auth/register/register.component';
 
 @NgModule({
   declarations: [
@@ -39,19 +47,31 @@ import { LoginComponent } from './components/auth/login/login.component';
     GenresComponent,
     TvShowsComponent,
     TvShowComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    AppRoutingModule,
-    HttpClientModule,
-    PaginatorModule,
-    TabViewModule,
-    ImageModule,
-    CarouselModule,
-    InputTextModule
-  ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        AppRoutingModule,
+        HttpClientModule,
+        PaginatorModule,
+        TabViewModule,
+        ImageModule,
+        CarouselModule,
+        InputTextModule,
+        MatCardModule,
+        ReactiveFormsModule,
+        MatInputModule,
+        MatButtonModule,
+        MatSnackBarModule,
+        JwtModule.forRoot({
+            config: {
+                tokenGetter: tokenGetter,
+                allowedDomains: ['localhost:3000', 'localhost:8080']
+            }
+        })
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
