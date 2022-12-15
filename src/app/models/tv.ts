@@ -63,6 +63,6 @@ export const mapTvShowToItem = (tvShow: TvShow): Item => {
     vote_count: tvShow.vote_count,
     release_date: tvShow.release_date,
     overview: tvShow.overview,
-    routePath: '/tvshow/' + tvShow.id
+    routePath: '/tv-show/' + tvShow.id
   };
 };

@@ -5,7 +5,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { MovieComponent } from './pages/movie/movie.component';
 import { MoviesComponent } from './pages/movies/movies.component';
 import { TvShowsComponent } from './pages/tv-shows/tv-shows.component';
-import { TvShowComponent } from './pages/tvshow/tvshow.component';
+import { TvShowComponent } from './pages/tv-show/tvshow.component';
 
 const routes: Routes = [
   {
@@ -29,7 +29,7 @@ const routes: Routes = [
     component: TvShowsComponent
   },
   {
-    path: 'tvshow/:id',
+    path: 'tv-show/:id',
     component: TvShowComponent
   },
   {
