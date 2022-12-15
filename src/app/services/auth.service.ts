@@ -1,9 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of, tap } from 'rxjs';
-import { JwtHelperService } from '@auth0/angular-jwt';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { fakeLoginResponse, fakeRegisterResponse, LOCALSTORAGE_TOKEN_KEY } from "../constants/login-mock";
+import { LOCALSTORAGE_TOKEN_KEY, LOGIN_PATH, REGISTER_PATH } from "../constants/auth-constants";
 import { LoginRequest, LoginResponse, RegisterRequest, RegisterResponse } from "../models/auth";
 
 
@@ -13,24 +12,22 @@ import { LoginRequest, LoginResponse, RegisterRequest, RegisterResponse } from "
 export class AuthService {
     loggedIn = new BehaviorSubject<boolean>(false);
 
-    constructor(private http: HttpClient, private snackbar: MatSnackBar, private jwtService: JwtHelperService) {}
+    constructor(private http: HttpClient, private snackbar: MatSnackBar) {}
 
     login(loginRequest: LoginRequest): Observable<LoginResponse> {
-        this.loggedIn.next(true);
-        return of(fakeLoginResponse).pipe(
+        return this.http.post<LoginResponse>(LOGIN_PATH, loginRequest).pipe(
             tap((res: LoginResponse) => localStorage.setItem(LOCALSTORAGE_TOKEN_KEY, res.accessToken)),
+            tap(() => this.loggedIn.next(true)),
             tap(() => this.snackbar.open('Login Successful', 'Close', {
-              duration: 2000, horizontalPosition: 'right', verticalPosition: 'top'
-            }))
-        );
+            duration: 1500, horizontalPosition: 'right', verticalPosition: 'top' })));
       }
 
     register(registerRequest?: RegisterRequest): Observable<RegisterResponse> {
-        return of(fakeRegisterResponse).pipe(
-            tap((res: RegisterResponse) => this.snackbar.open(`User created successfully`, 'Close', {
-              duration: 2000, horizontalPosition: 'right', verticalPosition: 'top'
-            })),
-        );
+         return this.http.post<RegisterResponse>(REGISTER_PATH, registerRequest).pipe(
+            tap((res: LoginResponse) => localStorage.setItem(LOCALSTORAGE_TOKEN_KEY, res.accessToken)),
+            tap(() => this.loggedIn.next(true)),
+            tap(() => this.snackbar.open(`User created successfully`, 'Close', {
+            duration: 1500, horizontalPosition: 'right', verticalPosition: 'top' })));
       }
 
     logout(): void {
