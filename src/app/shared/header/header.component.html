@@ -5,10 +5,16 @@
     </a>
     <ul class="navbar-links">
       <li><a routerLink="/">Home</a></li>
-      <li><a routerLink="/movies">Movies</a></li>
-      <li><a routerLink="/tvshows">TV Shows</a></li>
-      <li><a routerLink="/genres">Genres</a></li>
-      <li><a href="/auth/login">Login</a></li>
+      <ng-container *ngIf="isLoggedIn() | async; else login">
+        <li><a routerLink="/movies">Movies</a></li>
+        <li><a routerLink="/tvshows">TV Shows</a></li>
+        <li><a routerLink="/genres">Genres</a></li>
+        <li><a href="/auth/logout" (click)="logout()">Logout</a></li>
+      </ng-container>
+      <ng-template #login>
+        <li><a href="/auth/login">Login</a></li>
+        <li><a href="/auth/register">Register</a></li>
+      </ng-template>
     </ul>
   </nav>
 </header>
