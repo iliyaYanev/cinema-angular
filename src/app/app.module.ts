@@ -22,6 +22,7 @@ import { GenresComponent } from './pages/genres/genres.component';
 import { InputTextModule } from 'primeng/inputtext';
 import { TvShowsComponent } from './pages/tv-shows/tv-shows.component';
 import { TvShowComponent } from './pages/tv-show/tvshow.component';
+import { LoginComponent } from './components/auth/login/login.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { TvShowComponent } from './pages/tv-show/tvshow.component';
     VideoEmbedComponent,
     GenresComponent,
     TvShowsComponent,
-    TvShowComponent
+    TvShowComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

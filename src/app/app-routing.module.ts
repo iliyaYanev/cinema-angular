@@ -6,11 +6,16 @@ import { MovieComponent } from './pages/movie/movie.component';
 import { MoviesComponent } from './pages/movies/movies.component';
 import { TvShowsComponent } from './pages/tv-shows/tv-shows.component';
 import { TvShowComponent } from './pages/tv-show/tvshow.component';
+import { LoginComponent } from './components/auth/login/login.component';
 
 const routes: Routes = [
   {
     path: '',
     component: HomeComponent
+  },
+  {
+    path: 'auth/login',
+    component: LoginComponent
   },
   {
     path: 'movies',
