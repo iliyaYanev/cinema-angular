@@ -18,11 +18,10 @@ a {
 mat-card {
   max-width: 600px;
 
-  mat-card-title,
-  mat-card-content {
+  mat-card-title, mat-card-content {
     display: flex;
     justify-content: center;
-    color: $primaryColor;;
+    color: $primaryColor;
     font-size: 25px;
     margin: 5px;
 
