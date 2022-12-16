@@ -22,6 +22,9 @@
                     <mat-error
                             *ngIf="this.registerForm.get('username')?.touched && this.registerForm.get('username')?.hasError('required')">
                         Username is required</mat-error>
+                    <mat-error
+                            *ngIf="this.registerForm.get('username')?.touched && this.registerForm.get('username')?.hasError('minlength')">
+                        Username is should be at least 3 characters long</mat-error>
                 </mat-form-field>
 
                 <mat-form-field>
@@ -29,6 +32,9 @@
                     <mat-error
                             *ngIf="this.registerForm.get('firstName')?.touched && this.registerForm.get('firstName')?.hasError('required')">
                         First Name is required</mat-error>
+                    <mat-error
+                            *ngIf="this.registerForm.get('firstName')?.touched && this.registerForm.get('firstName')?.hasError('minlength')">
+                        First name is should be at least 3 characters long</mat-error>
                 </mat-form-field>
 
                 <mat-form-field>
@@ -36,6 +42,9 @@
                     <mat-error
                             *ngIf="this.registerForm.get('lastName')?.touched && this.registerForm.get('lastName')?.hasError('required')">
                         Last Name is required</mat-error>
+                    <mat-error
+                            *ngIf="this.registerForm.get('lastName')?.touched && this.registerForm.get('lastName')?.hasError('minlength')">
+                        Last name is should be at least 3 characters long</mat-error>
                 </mat-form-field>
 
                 <mat-form-field>
@@ -43,6 +52,9 @@
                     <mat-error
                             *ngIf="this.registerForm.get('password')?.touched && this.registerForm.get('password')?.hasError('required')">
                         Password is required</mat-error>
+                    <mat-error
+                            *ngIf="this.registerForm.get('password')?.touched && this.registerForm.get('password')?.hasError('minlength')">
+                        Password should be at least 3 characters long</mat-error>
                 </mat-form-field>
 
                 <mat-form-field>
