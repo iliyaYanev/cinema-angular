@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Movie, MovieCredits, MovieImages, MovieVideo } from 'src/app/models/movie';
+import {mapMovieToItem, Movie, MovieCredits, MovieImages, MovieVideo} from 'src/app/models/movie';
 import { MoviesService } from 'src/app/services/movies.service';
 import { IMAGES_SIZES } from '../../constants/images-sizes';
+import { Item } from "../../models/item";
 
 @Component({
   selector: 'app-movie',
@@ -15,7 +16,7 @@ export class MovieComponent implements OnInit {
   movieImages: MovieImages | null = null;
   movieCredits: MovieCredits | null = null;
   imagesSizes = IMAGES_SIZES;
-  similarMovies: Movie[] = [];
+  similarMovies: Item[] = [];
 
   constructor(private route: ActivatedRoute, private moviesService: MoviesService) {}
 
@@ -43,7 +44,7 @@ export class MovieComponent implements OnInit {
 
   getMovieSimilar(id: string) {
     this.moviesService.getMovieSimilar(id).subscribe((movieSimilarData) => {
-      this.similarMovies = movieSimilarData;
+      this.similarMovies = movieSimilarData.map((movie) => mapMovieToItem(movie));
     });
   }
 
