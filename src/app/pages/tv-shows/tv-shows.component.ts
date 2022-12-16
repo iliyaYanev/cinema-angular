@@ -4,7 +4,7 @@ import { take } from 'rxjs/operators';
 import { TvShowsService } from '../../services/tvshows.service';
 import { Item } from "../../models/item";
 import { mapTvShowToItem } from "../../models/tv";
-import {animate, state, style, transition, trigger} from "@angular/animations";
+import { animate, state, style, transition, trigger } from "@angular/animations";
 
 @Component({
   selector: 'app-tv-shows',
