@@ -4,7 +4,7 @@ import { take } from 'rxjs/operators';
 import { MoviesService } from 'src/app/services/movies.service';
 import { Item } from "../../models/item";
 import { mapMovieToItem } from "../../models/movie";
-import {animate, state, style, transition, trigger} from "@angular/animations";
+import { animate, state, style, transition, trigger } from "@angular/animations";
 
 @Component({
   selector: 'app-movies',
