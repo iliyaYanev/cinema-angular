@@ -5,6 +5,7 @@ import { TvShowsService } from '../../services/tvshows.service';
 import { Item } from "../../models/item";
 import { mapTvShowToItem } from "../../models/tv";
 import { animate, state, style, transition, trigger } from "@angular/animations";
+import { Scroller } from "primeng/scroller";
 
 @Component({
   selector: 'app-tv-shows',
@@ -47,7 +48,7 @@ export class TvShowsComponent implements OnInit {
     });
   }
 
-  paginate(event: any) {
+  paginate(event: Scroller) {
     const pageNumber = event.page + 1;
 
     if (this.genreId) {
