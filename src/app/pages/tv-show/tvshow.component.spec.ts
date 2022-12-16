@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TvShowComponent } from './tvshow.component';
+import { RouterModule } from "@angular/router";
+import { HttpClientModule } from "@angular/common/http";
 
 describe('TvShowComponent', () => {
   let component: TvShowComponent;
@@ -8,7 +10,8 @@ describe('TvShowComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TvShowComponent ]
+      declarations: [ TvShowComponent ],
+      imports: [ RouterModule.forRoot([]), HttpClientModule ]
     })
     .compileComponents();
   });
