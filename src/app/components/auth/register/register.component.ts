@@ -14,10 +14,10 @@ import { RegisterRequest } from "../../../models/auth";
 export class RegisterComponent {
     registerForm = new FormGroup({
             email: new FormControl(null, [Validators.required, Validators.email]),
-            username: new FormControl(null, [Validators.required]),
-            firstName: new FormControl(null, [Validators.required]),
-            lastName: new FormControl(null, [Validators.required]),
-            password: new FormControl(null, [Validators.required]),
+            username: new FormControl(null, [Validators.required, Validators.minLength(3)]),
+            firstName: new FormControl(null, [Validators.required, Validators.minLength(3)]),
+            lastName: new FormControl(null, [Validators.required, Validators.minLength(3)]),
+            password: new FormControl(null, [Validators.required, Validators.minLength(3)]),
             passwordConfirm: new FormControl(null, [Validators.required])
         },
         {validators: CustomValidators.passwordsMatching}
