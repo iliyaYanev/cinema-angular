@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, tap, throwError } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { LOCALSTORAGE_TOKEN_KEY, LOGIN_PATH, REGISTER_PATH } from "../constants/auth-constants";
 import { LoginRequest, LoginResponse, RegisterRequest, RegisterResponse } from "../models/auth";
@@ -16,19 +16,30 @@ export class AuthService {
 
     login(loginRequest: LoginRequest): Observable<LoginResponse> {
         return this.http.post<LoginResponse>(LOGIN_PATH, loginRequest).pipe(
+            catchError(err => {
+                this.snackbar.open(err.error.message, 'Close', {
+                    duration: 1500, horizontalPosition: 'right', verticalPosition: 'top' });
+
+                return throwError(err);
+            }),
             tap((res: LoginResponse) => localStorage.setItem(LOCALSTORAGE_TOKEN_KEY, res.accessToken)),
             tap(() => this.loggedIn.next(true)),
             tap(() => this.snackbar.open('Login Successful', 'Close', {
-            duration: 1500, horizontalPosition: 'right', verticalPosition: 'top' })));
+                duration: 1500, horizontalPosition: 'right', verticalPosition: 'top' })));
       }
 
     register(registerRequest: RegisterRequest): Observable<RegisterResponse> {
-        console.log(registerRequest);
          return this.http.post<RegisterResponse>(REGISTER_PATH, registerRequest).pipe(
+             catchError(err => {
+                 this.snackbar.open(err.error.message, 'Close', {
+                     duration: 1500, horizontalPosition: 'right', verticalPosition: 'top' });
+
+                 return throwError(err);
+             }),
             tap((res: RegisterResponse) => localStorage.setItem(LOCALSTORAGE_TOKEN_KEY, res.accessToken)),
             tap(() => this.loggedIn.next(true)),
             tap(() => this.snackbar.open(`User created successfully`, 'Close', {
-            duration: 1500, horizontalPosition: 'right', verticalPosition: 'top' })));
+                duration: 1500, horizontalPosition: 'right', verticalPosition: 'top' })));
       }
 
     logout(): void {
