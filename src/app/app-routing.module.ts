@@ -6,8 +6,8 @@ import { MovieComponent } from './pages/movie/movie.component';
 import { MoviesComponent } from './pages/movies/movies.component';
 import { TvShowsComponent } from './pages/tv-shows/tv-shows.component';
 import { TvShowComponent } from './pages/tv-show/tvshow.component';
-import { LoginComponent } from './components/auth/login/login.component';
-import { RegisterComponent } from "./components/auth/register/register.component";
+import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from "./auth/register/register.component";
 import { AuthGuard } from "./guards/auth-guard/auth-guard";
 
 const routes: Routes = [
