@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { GenresComponent } from './genres.component';
+import { RouterModule } from "@angular/router";
+import { HttpClientModule } from "@angular/common/http";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 describe('GenresComponent', () => {
   let component: GenresComponent;
@@ -8,7 +11,8 @@ describe('GenresComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GenresComponent ]
+      declarations: [ GenresComponent ],
+      imports: [ RouterModule.forRoot([]), HttpClientModule, BrowserAnimationsModule ]
     })
     .compileComponents();
   });
