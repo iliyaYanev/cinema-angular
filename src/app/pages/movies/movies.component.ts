@@ -5,6 +5,7 @@ import { MoviesService } from 'src/app/services/movies.service';
 import { Item } from "../../models/item";
 import { mapMovieToItem } from "../../models/movie";
 import { animate, state, style, transition, trigger } from "@angular/animations";
+import { Scroller } from "primeng/scroller";
 
 @Component({
   selector: 'app-movies',
@@ -47,7 +48,7 @@ export class MoviesComponent implements OnInit {
     });
   }
 
-  paginate(event: any) {
+  paginate(event: Scroller) {
     const pageNumber = event.page + 1;
 
     if (this.genreId) {
