@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SliderComponent } from './slider.component';
+import { RouterModule } from "@angular/router";
+import { HttpClientModule } from "@angular/common/http";
 
 describe('SliderComponent', () => {
   let component: SliderComponent;
@@ -8,7 +10,8 @@ describe('SliderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SliderComponent ]
+      declarations: [ SliderComponent ],
+      imports: [ RouterModule.forRoot([]), HttpClientModule ]
     })
     .compileComponents();
   });
