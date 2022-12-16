@@ -27,7 +27,7 @@ export class LoginComponent {
     }
 
     this.authService.login(this.loginForm.value).pipe(
-        tap(() => this.router.navigate(['../']))
+        tap(() => this.router.navigate(['/']))
     ).subscribe();
   }
 

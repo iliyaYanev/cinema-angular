@@ -31,7 +31,7 @@ export class RegisterComponent {
             return;
         }
         this.authService.register(<RegisterRequest><unknown>this.registerForm.value)
-            .pipe(tap(() => this.router.navigate(['../'])))
+            .pipe(tap(() => this.router.navigate(['/'])))
             .subscribe();
     }
 }
