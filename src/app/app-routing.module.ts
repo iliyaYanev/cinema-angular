@@ -39,7 +39,7 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'tvshows',
+    path: 'tv-shows',
     component: TvShowsComponent,
     canActivate: [AuthGuard]
   },
@@ -49,7 +49,7 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'tvshows/genres/:genreId',
+    path: 'tv-shows/genres/:genreId',
     component: TvShowsComponent,
     canActivate: [AuthGuard]
   },
