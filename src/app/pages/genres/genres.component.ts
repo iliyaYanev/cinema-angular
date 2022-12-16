@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MoviesService } from 'src/app/services/movies.service';
 import { TvShowsService } from 'src/app/services/tvshows.service';
 import { Genre } from '../../models/genre';
-import {animate, state, style, transition, trigger} from "@angular/animations";
+import { animate, state, style, transition, trigger } from "@angular/animations";
 
 @Component({
   selector: 'app-genres',
