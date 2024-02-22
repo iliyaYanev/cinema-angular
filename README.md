@@ -26,7 +26,6 @@ Guards:
 * **auth guard** - guest users will only have access to the login, register and home pages, the other pages require a logger in user.
 
 Services: 
-* **auth** - responsible for making the login, register and logout request to the BE and returning an observable to the corresponding component.
 * **movies** - responsible for making all api calls related to movies.
 * tv **shows** - responsible for making all api calls related to tv shows.
 
